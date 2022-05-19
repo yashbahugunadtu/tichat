@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+    <title>TIchat3</title>
+    <link href="./static/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./static/css/signin.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body class="text-center">
+    <div class="form-signin">
+      <svg height="100" width="1000" stroke="#ff0000" stroke-width="1" class="text-line">
+      <text class="h1 mb-3 font-weight-bold" x="80" y="90" fill="none" font-size = "200">TIchat3</text>
+      </svg>
+      
+      <label for="user" class="sr-only">Name</label>
+      <input type="text" id="user" class="form-control" placeholder="Name" required="" autofocus="">
+      
+      <label for="number" class="sr-only">Phone</label>
+      <input type="tel" id="number" class="form-control" placeholder="Phone Number"required="">
+
+      <button class="btn btn-lg btn-outline-danger btn-block" onclick="btnclk()">Login!</button>    
+    </div>
+  
+
+</body>
+  <script>
+    //temp();
+      function btnclk() {
+         let url = "{{domain}}/user/";
+         location.href = `${url}` + document.getElementById('user').value + "/" + document.getElementById('number').value;
+      }
+      function temp() {
+        //love can change the world in a moment, but what do I know
+        fetch(location.href, {
+              method: "POST",
+              "content-type":"application/json",
+          }).then((res)=> res.json()).then((res)=> {
+                  console.log(res[0][1] == 2);
+              });
+
+      }
+  </script>
+</html>
+
+
+
+
+
+

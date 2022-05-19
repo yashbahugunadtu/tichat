@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+    <title>TIchat3</title>
+    <link href="/static/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/chat.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/chats.css" rel="stylesheet" type="text/css"/>
+</head>
+
+  <body >
+    <div class="info">
+        <svg height="100" width="1000" stroke="#ff0000" stroke-width="1" class="text-line">
+      <text class=" mb-3 font-weight-bold" x="10" y="90" fill="none" font-size = "100">TIchat3</text>
+      </svg>
+      <div class="row">
+        <h5 class="nav-link">{{receivername}}</h5>
+        <h5 class="nav-link disabled">{{receiverno}}</h5>
+        <button class="btn btn-outline-danger"  type="button" name="button" onclick="back()">Back
+        </button>
+      </div>
+      </div>
+    <div class="col-sm-4 ml-3">
+        <h1>
+            contacts
+        </h1>
+        <ul class="list-group" id="users"></ul>  
+    </div>
+  </body>
+  <script>
+    let url = "{{domain}}"
+    let user = "{{username}}";
+    let userno = "{{userno}}";
+    function back() {
+        location.href = `${url}/`;
+      }
+    const interval = setInterval(check, 1000);
+    function check() {
+        fetch(`${url}/user/` + user + "/" + userno, {
+            method: "POST",
+            "content-type":"application/json",
+        }).then((res)=> res.json()).then((res)=>{
+                let temp = "";
+                let list1 = Object.keys(res);
+                let list2 = Object.values(res);
+                list1.forEach(update);
+                function update(value, index) {
+
+
+                    if (index%2 == 0) {
+                        temp +=  `<a class="h4" href=\"${url}/chat/${user}/${userno}/${list2[index]}/${value}\"><li > ${list2[index]}</li></a>`
+                    }
+                    else {
+                        temp +=  `<a class="h4" href=\"${url}/chat/${user}/${userno}/${list2[index]}/${value}\"><li> ${list2[index]}</li></a>`
+                    }
+                  
+                }
+                document.getElementById('users').innerHTML = temp;
+            }
+            )
+    }
+  </script>
+</html>

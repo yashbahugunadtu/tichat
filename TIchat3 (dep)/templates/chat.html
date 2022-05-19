@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+    <title>TIchat3</title>
+    <link href="/static/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/chat.css" rel="stylesheet" type="text/css"/>
+</head>
+
+  <body>  
+    <div class="content col-12 col-sm-4">   
+  
+
+        <div type="text" name ="chats">
+             <ul id="chats" class="chat-list">
+            </ul>
+
+
+
+      <div class="info">
+        <svg height="100" width="1000" stroke="#ff0000" stroke-width="1" class="text-line">
+      <text class=" mb-3 font-weight-bold" x="10" y="90" fill="none" font-size = "100">TIchat3</text>
+      </svg>
+      <div class="row">
+        <h5 class="nav-link">{{receivername}}</h5>
+        <h5 class="nav-link disabled">{{receiverno}}</h5>
+        <button class="btn btn-outline-danger"  type="button" name="button" onclick="back()">Back
+        </button>
+      </div>
+      </div>
+    </div>
+
+
+            <footer class="footer fixed-bottom">
+              <div>
+                  <input class="tosend ml-3" type="text" name ="message" id="message" style="margin-bottom: 10px; border-radius: 50px 50px;">
+                  <button  type="button" class="btn btn-outline-danger ml-sm-5 rounded-pill" name="button" onclick="send()">Send</button></div>
+            </footer>
+
+</div>
+<br>
+<br>
+<br>
+
+  </body>
+      
+
+  
+
+
+
+  <script>
+          window.scrollTo(0, document.body.scrollHeight);   
+      let username = "{{username}}";
+      let usernumber = "{{userno}}";
+      let receivername = "{{receivername}}";
+      let receivernumber = "{{receiverno}}";
+      let url = "{{domain}}";
+      let f = "<li class='out'><div class='chat-body'><div class='chat-message'><h5>"
+      let s = "<li class='in'><div class='chat-body'><div class='chat-message'><h5>"
+      let e = "</h5></div></div></li>"
+      let prev;
+
+      function back() {
+        location.href = `${url}/user/${username}/${usernumber}`;
+        console.log()
+      }
+      //check chat for any updates every second
+      const interval = setInterval(check, 1000);
+
+      function check() {
+        console.log(location.href);
+          fetch(location.href, {
+              method: "POST",
+              "content-type":"application/json",
+              body: JSON.stringify({id:"0"}),
+          }).then((res)=> res.json()).then((res)=> {
+
+                  if (prev !== res.length){
+                    console.log(prev, res.length)                     
+                     console.log(prev, res.length)
+                     prev = res.length;
+                     console.log(prev, res.length)
+
+                     let mess = "";
+                
+                      for (let lst in res) {
+                        if (res[lst][1] == 1) {
+                          mess += f + res[lst][2] + e;
+                        }
+                        else {
+                          mess += s + res[lst][2] + e;
+                        }
+                      }
+                      document.getElementById('chats').innerHTML = mess;
+                      document.body.scrollIntoView({behavior: 'smooth', block: 'end'});
+                  }
+              })
+      }
+
+      function send() {
+          let inp = document.getElementById('message').value;
+          prev++;
+
+          
+          
+          fetch(location.href, {
+              method: "POST",
+              "content-type":"application/json",
+              body: JSON.stringify({input:inp, id:"1"}),
+          }).then((res)=> res.json()).then((res)=> {
+                 document.getElementById('chats').innerHTML += f + res.message + e;
+                  //window.scrollTo(0, document.body.scrollHeight);
+                  document.body.scrollIntoView({behavior: 'smooth', block: 'end'});
+
+
+              })
+
+      }
+
+  </script>
+</html>
