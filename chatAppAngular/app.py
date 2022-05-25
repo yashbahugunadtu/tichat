@@ -16,16 +16,11 @@ class User(db.Model):
     userno = db.Column(db.String(10), primary_key=True)
     username = db.Column(db.String(200), nullable=False)
 
-    def __repr__(self) -> str:
-        return f"{self.sno} - {self.title}"
-
 class Messages(db.Model):
     senderno = db.Column(db.String(10), primary_key=True)
     receiverno = db.Column(db.String(10), nullable=False)
     message = db.Column(db.String(255), nullable=False)
     time = db.Column(db.DateTime,  primary_key=True, default=datetime.utcnow)
-    def __repr__(self) -> str:
-        return f"{self.sno} - {self.title}"
 
 '''
 def getKey(username, to):
