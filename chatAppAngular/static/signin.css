@@ -1,0 +1,72 @@
+html,
+body {
+  height: 100%;
+}
+h1 {
+   -webkit-text-stroke: 1px red;
+   color: #FFFFFF !important;
+}
+body {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #FFFFFF;
+}
+
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin input[type="text"] {
+  margin-bottom: 10px;
+  border-radius: 50px 50px;
+}
+
+.form-signin input[type="tel"] {
+  margin-bottom: 10px;
+  border-radius: 50px 50px;
+}
+
+.text-line text {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: dash 5s linear forwards, filling 3s ease-in forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes filling {
+  from{
+    fill: #000000;
+    fill-opacity: 0;
+  }
+  to {
+    fill: #000000;
+    fill-opacity: 0.8;
+  }
+}
+
