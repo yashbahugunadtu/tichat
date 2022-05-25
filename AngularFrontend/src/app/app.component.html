@@ -1,0 +1,16 @@
+<div class = "container mainn">
+    <div class="row">
+        <h1>Contacts</h1>
+    </div>
+    <div class="row" style="height: 85vh;">
+        <div id="contacts-div" style="overflow-x:hidden; overflow-y:scroll;" class="scrolls col-sm-4 p-3 scrollstyle border-0">
+            <app-contacts></app-contacts>
+        </div>
+        <div #target [scrollTop] = "target.scrollHeight" style="overflow-y:scroll;height: 85vh;" class="scrolls col-sm-8 align-items-end">
+            <app-messages (scrollToBottom)="onScroll(target)"></app-messages>
+        </div>
+        
+    </div>
+    <app-send-component class="footer fixed-bottom"></app-send-component>
+
+</div>

@@ -1,0 +1,23 @@
+<div *ngIf="message.sent;then content else other_content"></div>
+<ng-template #content>
+    <li class='out'><div class='chat-body'><div class='chat-message'><h5>
+        {{message.body}}
+    </h5></div></div></li>
+</ng-template>
+<ng-template #other_content>
+    <li class='in'>
+        <div class='chat-body'>
+            <div class='chat-message'>
+                <h5>
+                {{message.body}}
+                </h5>
+            </div>
+        </div>
+    </li>
+</ng-template>
+
+
+
+
+
+

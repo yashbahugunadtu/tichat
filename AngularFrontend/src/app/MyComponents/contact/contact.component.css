@@ -1,0 +1,8 @@
+li:hover {
+    color: red;
+    transform: translateX(40px);
+  }
+  li {
+    cursor: pointer;
+  }
+  

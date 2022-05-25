@@ -1,0 +1,8 @@
+
+<div type="text" name="chats">
+    <ng-container #messageContainer *ngFor="let message of messages">
+        <ul id="chats" class="chat-list">
+            <app-message [message] = "message"></app-message>
+        </ul>
+    </ng-container>
+</div>

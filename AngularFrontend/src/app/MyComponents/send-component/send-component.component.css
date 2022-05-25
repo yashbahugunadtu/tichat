@@ -1,0 +1,10 @@
+.tosend {
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    margin-left: 50%;
+    position: relative;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+  }
